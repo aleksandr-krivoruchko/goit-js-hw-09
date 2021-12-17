@@ -4,23 +4,25 @@ const btnStop = document.querySelector("button[data-stop]");
 btnStart.addEventListener("click", onBtnStart);
 btnStop.addEventListener("click", onBtnStop);
 
-// btnStart.addEventListener("click", () => {
-//   timerId = setInterval(() => {
-//     document.body.style.backgroundColor = getRandomHexColor();
-//   }, 1000);
-// });
 
 let timerId = null;
 
 function onBtnStart() {
+
    timerId = setInterval(() => {
       document.body.style.backgroundColor = getRandomHexColor();
    }, 1000);
+
+	btnStart.disabled=true;
 }
 
 
 function onBtnStop() {
+
    clearInterval(timerId);
+	
+		btnStart.disabled=false;
+
 }
 
 
