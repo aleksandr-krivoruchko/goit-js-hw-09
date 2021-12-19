@@ -13,7 +13,7 @@ function onBtnStart() {
       document.body.style.backgroundColor = getRandomHexColor();
    }, 1000);
 
-	btnStart.disabled=true;
+	btnStart.disabled = true;
 }
 
 
@@ -21,7 +21,7 @@ function onBtnStop() {
 
    clearInterval(timerId);
 	
-		btnStart.disabled=false;
+		btnStart.disabled = false;
 
 }
 
