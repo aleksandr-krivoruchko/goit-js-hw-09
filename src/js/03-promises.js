@@ -9,23 +9,25 @@ let position = 0;
 
 function onBtnSubmitCreatePromise(e) {
   e.preventDefault();
-  const { elements: { delay, step, amount } } = e.currentTarget;
-  let DELAY;
+  let delay = Number(e.currentTarget.elements.delay.value);
+const step = Number(e.currentTarget.elements.step.value);
+const amount = Number(e.currentTarget.elements.amount.value);
 
   setInterval(() => {
-    DELAY += (delay.value + step.value);
-    if (position == amount.value) { return}
-    position += 1;
+    
+    if (position == amount) { return}
 
-createPromise(position, delay.value)
+    position += 1;
+  setTimeout(()=>{delay += step;})
+
+createPromise(position, delay)
   .then(({ position, delay }) => {
     Notiflix.Notify.success(`✅ Fulfilled promise ${position} in ${delay}ms`);
   })
   .catch(({ position, delay }) => {
     Notiflix.Notify.warning(`❌ Rejected promise ${position} in ${delay}ms`);
   });
-  }, DELAY);
-  
+  }, delay);
 }
 
 function createPromise(position, delay) {
@@ -45,4 +47,18 @@ function createPromise(position, delay) {
 }
 
 
-  
+//   function onBtnSubmitCreatePromise(e) {
+//   e.preventDefault();
+//   let delay = Number(e.currentTarget.elements.delay.value);
+// const step = Number(e.currentTarget.elements.step.value);
+// const amount = Number(e.currentTarget.elements.amount.value);
+
+// const data = [];
+
+// for (let i = 0; i < amount; i+=1) {
+// data.push(delay + i*step);	
+// }
+// const promises = data.map((position, delay) => {
+// createPromise(position + 1, delay)
+// })
+// }
