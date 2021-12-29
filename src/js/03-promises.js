@@ -5,7 +5,6 @@ const refs = {
 }
 
 refs.form.addEventListener('submit', onBtnSubmitCreatePromise);
-let position = 0;
 
 
 function createPromise(position, delay) {
@@ -32,8 +31,7 @@ function createPromise(position, delay) {
 const step = Number(e.currentTarget.elements.step.value);
 const amount = Number(e.currentTarget.elements.amount.value);
 
-for (let i = 0; i < amount; i++) {
-	position += 1;
+for (let position = 1; position <= amount; position += 1) {
 	createPromise(position, delay)
   .then(({ position, delay }) => {
     Notiflix.Notify.success(`✅ Fulfilled promise ${position} in ${delay}ms`);
@@ -43,7 +41,7 @@ for (let i = 0; i < amount; i++) {
   });
   delay += step;
 }
-position=0;
+position = 0;
 }
 
 
