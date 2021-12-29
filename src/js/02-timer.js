@@ -25,7 +25,9 @@ function setDate(e) {
 
 function onBtnStart(e){
 
-setInterval(() => {
+const timerId = setInterval(() => {
+	
+
 const currentTime = Date.now();
 
 const {days, hours, minutes, seconds} = convertMs(futureTime - currentTime);
@@ -34,9 +36,12 @@ const {days, hours, minutes, seconds} = convertMs(futureTime - currentTime);
   refs.minutes.textContent = addLeadingZero(minutes);
   refs.hours.textContent = addLeadingZero(hours);
   refs.days.textContent = addLeadingZero(days);
-  
-  }, 1000);
 
+  if(days===0 && hours===0 && minutes===0 && seconds===0 ){
+	   clearInterval(timerId);
+		Notiflix.Notify.success("Happy New Year!!!");
+	}
+  }, 1000);
 }
 
 
